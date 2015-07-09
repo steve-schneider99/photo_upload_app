@@ -11,10 +11,25 @@ class PicturesController < ApplicationController
 
   def create
     @user = current_user
+    if params[:images]
+      params[:images].each do |image|
+        @user.pictures.create(picture: image)
+      end
+      redirect_to user_pictures_path
+    else
+      flash[:notice] = "No pictures selected!"
+      redirect_to :back
+    end
+  end
 
-    @user.pictures.create(picture_params)
+  def show
+    @picture = Picture.find(params[:id])
+  end
 
-    redirect_to user_pictures_path
+  def destroy
+    @picture = Picture.find(params[:id])
+    @picture.destroy
+    redirect_to user_pictures_path(current_user)
   end
 
   private
@@ -22,5 +37,4 @@ class PicturesController < ApplicationController
   def picture_params
     params.require(:picture).permit(:picture)
   end
-
 end

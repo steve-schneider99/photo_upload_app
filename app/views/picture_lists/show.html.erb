@@ -1,0 +1,5 @@
+<h3>Picture Owner: <%= @picture.user.email %></h3>
+<br>
+<%= image_tag @picture.picture.url %>
+<br>
+<p>Uploaded: <%= @picture.picture_updated_at %></p>

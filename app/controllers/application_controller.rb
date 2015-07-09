@@ -6,13 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :has_avatar?
   # before_save :upload_images
 
-
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || edit_user_registration_path
-  end
-
-  def after_sign_up_path_for(resource)
-    edit_user_registration_path
+    user_pictures_path(current_user.id)
   end
 
   private

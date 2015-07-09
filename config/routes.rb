@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :pictures
   end
 
+  resources :picture_lists
+
   root :to => "home#index"
 
 end

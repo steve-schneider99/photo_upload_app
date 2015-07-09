@@ -1,0 +1,5 @@
+<%= link_to "Back", :back %>
+
+<%= image_tag @picture.picture.url %>
+
+<%= link_to "Delete", user_picture_path(current_user, @picture), method: "delete" %>

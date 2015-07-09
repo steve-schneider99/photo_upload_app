@@ -11,12 +11,15 @@
   <div id='container'>
     <div id="user_nav">
       <%= link_to "Twinkl", root_path %> |
-      <%= link_to "Upload Pictures", new_user_picture_path(current_user), class: "pull=left" %>
-      <%#= image_tag(current_user.avatar.url(:thumb)) %>
+      <%= link_to "Pictures", picture_lists_path %>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :span, msg, id: "flash_#{name}", class: "flash" %>
+      <% end %>
+
       <span class="pull-right">
         <% if user_signed_in? %>
-          Logged in as <strong><%= current_user.email %></strong>.
-          <%= link_to 'Edit Profile', edit_user_registration_path %> |
+          Logged in as <strong><%= link_to current_user.email, edit_user_registration_path %></strong> |
+          <%= link_to 'My Pictures', user_pictures_path(current_user) %> |
           <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to 'Sign Up', new_user_registration_path %> |
@@ -24,10 +27,6 @@
         <% end %>
       </span>
     </div>
-
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, id: "flash_#{name}" %>
-    <% end %>
 
     <%= yield %>
 

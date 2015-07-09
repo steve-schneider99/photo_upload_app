@@ -1,0 +1,5 @@
+<h3>Pictures from everyone</h3>
+
+<% @pictures.each do |picture| %>
+  <%= link_to image_tag(picture.picture.url(:medium)), picture_list_path(picture) %>
+<% end %>
