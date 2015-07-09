@@ -19,7 +19,7 @@
       <span class="pull-right">
         <% if user_signed_in? %>
           Logged in as <strong><%= link_to current_user.email, edit_user_registration_path %></strong> |
-          <%= link_to 'My Pictures', user_pictures_path(current_user) %> |
+          <%= link_to 'My Pictures', user_pictures_path %> |
           <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to 'Sign Up', new_user_registration_path %> |

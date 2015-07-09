@@ -3,6 +3,11 @@
 <%= form_for [@user, @picture], html: { multipart: true } do |f| %>
   <%= file_field_tag "images[]", type: :file, multiple: true %>
 
-  <%#= f.file_field :picture %>
-  <%= f.submit "Upload pictures" %>
+    <%= f.fields_for @tags do |builder| %>
+      <fieldset>
+        <%= builder.label :tag %>
+        <%= builder.text_area :tag %>
+      </fieldset>
+    <% end %>
+    <%= f.submit "Upload pictures" %>
 <% end %>

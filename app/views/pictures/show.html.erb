@@ -1,5 +1,12 @@
-<%= link_to "Back", :back %>
+<%= image_tag @picture.picture.url(:medium) %>
+<br>
+<%= link_to "Back", :back %> |
 
-<%= image_tag @picture.picture.url %>
+<%= link_to "Delete", user_picture_path(@picture), method: "delete" %> |
 
-<%= link_to "Delete", user_picture_path(current_user, @picture), method: "delete" %>
+
+<ul>
+  <% @picture.tags.each do |tag| %>
+    <li><%= tag.picture_id %> | <%= tag.tag %></li>
+  <% end %>
+</ul>
